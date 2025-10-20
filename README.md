@@ -1,11 +1,11 @@
-# 🧠 SPIMI Positional Inverted Index
+#  SPIMI Positional Inverted Index
 
 This project implements the **Single-Pass In-Memory Indexing (SPIMI)** algorithm in **C++** to construct a **positional inverted index** from a given collection of text documents.  
 The program processes documents, tokenizes text while ignoring stop words and short terms, and generates an index that supports **efficient phrase queries**.
 
 ---
 
-## 📚 Project Overview
+##  Project Overview
 
 The system reads all text documents from a specified folder (e.g., `./docs`), tokenizes their contents, and builds the inverted index block by block in memory using the **SPIMI-Invert** algorithm.  
 Once memory is full (simulated by a block term limit), each block is written to disk and later merged into a final index file `pos_inverted_index.json`.
@@ -23,7 +23,7 @@ Where:
 
 ---
 
-## 🏗️ Files Generated
+##  Files Generated
 
 | File Name | Description |
 |------------|-------------|
@@ -35,31 +35,31 @@ Where:
 
 ---
 
-## ⚙️ How It Works
+##  How It Works
 
-### 1️⃣ Tokenization
+### 1️ Tokenization
 - Each document is read and split into tokens (words).
 - Words are cleaned, converted to lowercase, and filtered:
   - Stop words are ignored.
   - Words shorter than 3 characters are skipped.
 
-### 2️⃣ SPIMI Index Construction
+### 2️ SPIMI Index Construction
 - Terms are added to a **dictionary** in memory.
 - When memory (term count) reaches a threshold, the block is written to disk (`spimi_block_#.jsonl`).
 - Each posting list stores document IDs and word positions.
 
-### 3️⃣ Merging
+### 3️ Merging
 - All SPIMI blocks are merged into one global index (`pos_inverted_index.json`).
 - Each term appears once, containing all document postings.
 
-### 4️⃣ Phrase Query Search
+### 4️ Phrase Query Search
 - After indexing, the user is prompted to enter a phrase.
 - The system checks positional adjacency to determine if the phrase exists within documents.
 - It returns the relative file paths of matching documents.
 
 ---
 
-## 🧩 Example Output
+##  Example Output
 
 ```
 INDEXING COMPLETED 
@@ -76,7 +76,7 @@ PHRASE LOCATED IN:
 
 ---
 
-## 🧮 Example JSON Entry
+##  Example JSON Entry
 
 ```json
 {"university": [3, {"1": [5, 32, 76]}, {"4": [10]}, {"5": [27, 45]}]}
@@ -84,10 +84,10 @@ PHRASE LOCATED IN:
 
 ---
 
-## 🗂️ Folder Structure
+##  Folder Structure
 
 ```
-📁 PositionalInvertedIndex/
+ PositionalInvertedIndex/
 │
 ├── main.cpp
 ├── json.hpp
@@ -105,36 +105,36 @@ PHRASE LOCATED IN:
 
 ---
 
-## 🚀 How to Run
+##  How to Run
 
-### 🧱 1. Compile
+###  1. Compile
 ```bash
 g++ main.cpp -o main
 ```
 
-### ▶️ 2. Run
+###  2. Run
 ```bash
 ./main
 ```
 
-### 📁 3. Ensure Folder Exists
+###  3. Ensure Folder Exists
 Make sure you have a folder named `docs/` in the same directory, containing your text files.
 
 ---
 
-## 🧠 Features Summary
+##  Features Summary
 
-✅ Implements **SPIMI-Invert Algorithm**  
-✅ Creates **Positional Inverted Index**  
-✅ Ignores Stop Words & Short Words (< 3 chars)  
-✅ Saves **Intermediate SPIMI Blocks**  
-✅ Merges Blocks into a Final Index  
-✅ Supports **Phrase Query Search**  
-✅ Well-Commented and Organized Code  
+ Implements **SPIMI-Invert Algorithm**  
+ Creates **Positional Inverted Index**  
+ Ignores Stop Words & Short Words (< 3 chars)  
+ Saves **Intermediate SPIMI Blocks**  
+ Merges Blocks into a Final Index  
+ Supports **Phrase Query Search**  
+ Well-Commented and Organized Code  
 
 ---
 
-## ✍️ Author
+##  Author
 **Yazan Ashour**  
-📘 *Information Retrieval — Assignment 1*  
-Faculty of Computer Science and Information Systems
+ *Information Retrieval — Assignment 1*  
+
