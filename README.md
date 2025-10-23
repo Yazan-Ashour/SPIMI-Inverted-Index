@@ -109,7 +109,7 @@ PHRASE LOCATED IN:
 
 ###  1. Compile
 ```bash
-g++ main.cpp -o main
+g++ main.cpp porter2_stemmer.cpp -o main
 ```
 
 ###  2. Run
