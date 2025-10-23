@@ -10,6 +10,7 @@
 #include <cctype>
 #include <chrono>
 #include "json.hpp"
+#include "porter2_stemmer.h"
 
 using json = nlohmann::json;
 namespace fs = std::filesystem;
@@ -23,7 +24,7 @@ static const set<string> STOP_WORDS = {
 };
 
 // BLOCK TERM LIMIT - WHEN DICTIONARY REACHES THIS NUMBER OF UNIQUE TERMS, FLUSH TO DISK
-static const size_t BLOCK_TERM_LIMIT = 50;
+static const size_t BLOCK_TERM_LIMIT = 2500;
 
 // CLEAN A WORD: KEEP ONLY ALPHABETIC CHARS, CONVERT TO LOWERCASE
 string cleanWord(const string &word) {
@@ -45,9 +46,10 @@ vector<pair<string,int>> tokenizeWithPositions(const string &text) {
     int pos = 0;
     while (ss >> token) {
         string cleaned = cleanWord(token);
-        if (cleaned.size() > 2 && STOP_WORDS.find(cleaned) == STOP_WORDS.end()) {
-            tokens.emplace_back(cleaned, pos);
-        }
+            if (cleaned.size() > 2 && STOP_WORDS.find(cleaned) == STOP_WORDS.end()) {
+                Porter2Stemmer::stem(cleaned); 
+                tokens.emplace_back(cleaned, pos);
+            }
         pos++;
     }
     return tokens;
